@@ -1,0 +1,88 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "qlEzrgKgIkh7y0ePm9BNo1cNdXo=",
+			"path": "github.com/gin-contrib/sse",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "Qm9xMMH8viMcK5z3cwxLZcDZv2U=",
+			"path": "github.com/gin-gonic/gin",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "wUT8mr2qXvj7vgc2oGoE+bbJlt8=",
+			"path": "github.com/gin-gonic/gin/binding",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "rST0S8cuVbM57VmJhWXhKNUkKTc=",
+			"path": "github.com/gin-gonic/gin/internal/json",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "VgMVcgr4W6T2iEoiq3q8TrJuMlM=",
+			"path": "github.com/gin-gonic/gin/render",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "+ze/R7mgeilvYDWnkTC9jSp6z0g=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "dd9d356b496cd5c37543d3dd0ffbef75714b88ec",
+			"revisionTime": "2020-02-25T15:24:38Z"
+		},
+		{
+			"checksumSHA1": "Q3FteGbNvRRUMJqbYbmrcBd2DMo=",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "+k58oVsPE5qcJOpN7om0nezEE1o=",
+			"path": "github.com/gpmgo/gopm/modules/log",
+			"revision": "8898a4094f1ad736405a91d3559ae2acb3edaa25",
+			"revisionTime": "2019-07-29T00:57:25Z"
+		},
+		{
+			"checksumSHA1": "127FjqB8R9+ewoYNxa6svdJgdRU=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "7ea143b5484fe28148d5c73cfd43b26e8a89c94e",
+			"revisionTime": "2020-03-05T06:48:31Z"
+		},
+		{
+			"checksumSHA1": "eECxSkwh0WmhLwaxHfkvcLOWS08=",
+			"path": "github.com/jinzhu/gorm/dialects/mysql",
+			"revision": "7ea143b5484fe28148d5c73cfd43b26e8a89c94e",
+			"revisionTime": "2020-03-05T06:48:31Z"
+		},
+		{
+			"checksumSHA1": "OoMUQ1Vnt/5gzbvdsOZz6zKShz4=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "196e6ce06ca4513fbcfcbc35dc15f66074df47c9",
+			"revisionTime": "2020-02-16T10:24:04Z"
+		},
+		{
+			"checksumSHA1": "AGYXOcAtYsDYMIQOkmr38ehdEM8=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "8mJ7vjP4pj4Y8FH5jVT22mW5acA=",
+			"path": "github.com/ugorji/go/codec",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "1NWO740Tcho9ZNWVdfnFnoz5RD8=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "a1369afcdac740082c63165b07ec83b531884be2",
+			"revisionTime": "2020-01-02T13:53:07Z"
+		},
+		{
+			"checksumSHA1": "mspriBK28mrdRiQNHoThnYEFaeQ=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": ""
+		}
+	],
+	"rootPath": "golangDemo"
+}
