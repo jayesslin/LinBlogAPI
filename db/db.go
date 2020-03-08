@@ -7,10 +7,6 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-const (
-	DatabaseMaster = "root:12345923@/jayesstest?charset=utf8&parseTime=True&loc=Local"
-)
-
 // GormConsul 通过Consul发现MySQL读写实例, 绑定到gorm对象
 type GormConsul struct {
 	ctx       context.Context
