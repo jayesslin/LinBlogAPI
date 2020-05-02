@@ -1,10 +1,10 @@
 package dao
 
 import (
+	"blogapi/db"
+	"blogapi/model"
 	"context"
 	"github.com/gpmgo/gopm/modules/log"
-	"golangDemo/db"
-	"golangDemo/model"
 	"sync"
 )
 
@@ -12,6 +12,10 @@ type BlogDao struct{}
 
 var blogdao *BlogDao
 var BlogdaoOnce sync.Once
+
+const (
+	blogTableName = "blog"
+)
 
 func BlogdaoOnceInstance() *BlogDao {
 	BlogdaoOnce.Do(func() {
@@ -23,13 +27,14 @@ func (*BlogDao) AddBlog(ctx context.Context, req model.AdditionBlog) (model.Addi
 	NewBlog := &model.AdditionBlog{
 		BlogTitle:   req.BlogTitle,
 		BlogContent: req.BlogContent,
+		BlogType:    req.BlogType,
 	}
-	err := db.WriteDB(ctx).Table("blog").Create(&NewBlog).Error
+	err := db.WriteDB(ctx).Table(blogTableName).Create(&NewBlog).Error
 	return *NewBlog, err
 }
 func (*BlogDao) GetBlogs(ctx context.Context, pageNum, pageSize int) ([]*model.Blog, error) {
 	handle := db.ReadDB(ctx)
-	handle = handle.Table("blog")
+	handle = handle.Table(blogTableName)
 	handle = handle.Select("id,blog_title,blog_content,blog_author,create_time,update_time")
 	handle = handle.Order("create_time desc")
 	//var total int64
@@ -55,7 +60,7 @@ func (*BlogDao) GetBlogs(ctx context.Context, pageNum, pageSize int) ([]*model.B
 }
 func (*BlogDao) GetSpecifyBlog(ctx context.Context, id int) (*model.Blog, error) {
 	handle := db.ReadDB(ctx)
-	handle = handle.Table("blog")
+	handle = handle.Table(blogTableName)
 	handle = handle.Select("id,blog_title,blog_content,blog_author,create_time,update_time")
 	handle = handle.Where("id = ?", id)
 	rows, err := handle.Rows()
@@ -74,4 +79,11 @@ func (*BlogDao) GetSpecifyBlog(ctx context.Context, id int) (*model.Blog, error)
 		blogs = &tmpBlog
 	}
 	return blogs, nil
+}
+func (*BlogDao) DeletBlog(ctx context.Context, id int) error {
+	handle := db.ReadDB(ctx)
+	handle = handle.Table(blogTableName)
+	handle = handle.Where("id = ?", id)
+	err := handle.Delete(&model.Blog{}).Error
+	return err
 }

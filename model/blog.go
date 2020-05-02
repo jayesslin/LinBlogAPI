@@ -3,6 +3,7 @@ package model
 type AdditionBlog struct {
 	BlogTitle   string `gorm:"column:blog_title" json:"blog_title"`
 	BlogContent string `gorm:"column:blog_content" json:"blog_content"`
+	BlogType    string `gorm:"column:blog_type" json:"blog_type"`
 }
 type Blog struct {
 	BlogID      int    `gorm:"column:id" json:"id"`

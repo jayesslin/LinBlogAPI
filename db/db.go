@@ -25,6 +25,7 @@ func (s *GormConsul) Init() bool {
 
 func (s *GormConsul) initGormPool() bool {
 	var writeErr, readErr error
+	log.Info("链接上数据库", DatabaseMaster)
 	s.writeGorm, writeErr = s.newGormInstance(DatabaseMaster)
 	s.readGorm, readErr = s.newGormInstance(DatabaseMaster)
 	return writeErr == nil && readErr == nil
