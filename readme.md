@@ -8,16 +8,19 @@ nohup ./appName &
 ```    
 
 # LinBlogAPI现有接口
-        博客
-		v1.POST("/upload/", blog.PublishBlog) //发布博客
-		v1.GET("/getblog/", blog.GetBlogs) //获得博客列表
-		v1.POST("/page", blog.GetDetailBlog) //单条博客查询
-		v1.POST("/deleteblog/",blog.DeleteDetailBlog) // 删除博客
+博客接口
+
+     /api/blog/v1/publish/   //发布博客
+     /api/blog/v1/blogs/  //获得博客列表
+     /api/blog/v1/page  //单条博客查询
+     /api/blog/v1/delete/   // 删除博客
+     /api/blog/v1/categories/    //获得日志分类列表
 
 ## TODO
-1. 更新博客
-2. 获得博客分类列表 // 添加新表， 记录拆开
-3. 写评论
+1. 更新博客//其实不需要
+2. 获得博客分类列表 // 添加新表， 记录拆开 finish
+3. 写追加内容
+4. 根据分类筛选日志
 
 
 
