@@ -5,7 +5,7 @@ import (
 	"blogapi/model"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"github.com/gpmgo/gopm/modules/log"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 )
@@ -77,6 +77,39 @@ func DeleteDetailBlog(ctx *gin.Context) {
 	}
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "Delete success",
+	})
+	return
+}
+func GetBlogsByTypes(ctx *gin.Context) {
+	blogTypeGet := model.BlogType{}
+	data, err := ioutil.ReadAll(ctx.Request.Body)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"Result": err,
+		})
+		return
+	}
+	err = json.Unmarshal(data, &blogTypeGet)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"Result": err,
+		})
+		return
+	}
+	if blogTypeGet.BlogType == "" {
+		blogTypeGet.BlogType = "个人"
+	}
+	res, err := dao.BlogdaoOnceInstance().GetBlogsByType(ctx, 1, 1, blogTypeGet.BlogType)
+	if err != nil {
+		log.Error("1get BLog failed")
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"Resulte": err,
+		})
+		return
+	}
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "success",
+		"data":    res,
 	})
 	return
 }

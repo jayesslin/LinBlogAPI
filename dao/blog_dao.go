@@ -4,7 +4,7 @@ import (
 	"blogapi/db"
 	"blogapi/model"
 	"context"
-	"github.com/gpmgo/gopm/modules/log"
+	log "github.com/sirupsen/logrus"
 	"sync"
 )
 
@@ -86,4 +86,27 @@ func (*BlogDao) DeletBlog(ctx context.Context, id int) error {
 	handle = handle.Where("id = ?", id)
 	err := handle.Delete(&model.Blog{}).Error
 	return err
+}
+func (*BlogDao) GetBlogsByType(ctx context.Context, pageNum, pageSize int, blogType string) ([]*model.Blog, error) {
+	handle := db.ReadDB(ctx)
+	handle = handle.Table(blogTableName)
+	handle = handle.Select("id,blog_title,blog_content,blog_author,create_time,update_time")
+	handle = handle.Where("FIND_IN_SET('" + blogType + "',blog_type)")
+	handle = handle.Order("create_time desc")
+	rows, err := handle.Rows()
+	if err != nil {
+		log.Fatal("err%s", err)
+		return nil, err
+	}
+	defer rows.Close()
+	var blogs []*model.Blog
+	for rows.Next() {
+		var tmpBlog = model.Blog{}
+		if err := handle.ScanRows(rows, &tmpBlog); err != nil {
+			log.Error(err.Error())
+			continue
+		}
+		blogs = append(blogs, &tmpBlog)
+	}
+	return blogs, nil
 }

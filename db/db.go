@@ -2,9 +2,9 @@ package db
 
 import (
 	"context"
-	"github.com/gpmgo/gopm/modules/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	log "github.com/sirupsen/logrus"
 )
 
 // GormConsul 通过Consul发现MySQL读写实例, 绑定到gorm对象

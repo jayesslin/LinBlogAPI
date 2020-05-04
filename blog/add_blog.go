@@ -5,7 +5,7 @@ import (
 	"blogapi/model"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"github.com/gpmgo/gopm/modules/log"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 )

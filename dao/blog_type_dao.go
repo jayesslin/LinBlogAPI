@@ -4,7 +4,7 @@ import (
 	"blogapi/db"
 	"blogapi/model"
 	"context"
-	"github.com/gpmgo/gopm/modules/log"
+	log "github.com/sirupsen/logrus"
 	"strings"
 	"sync"
 )

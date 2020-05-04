@@ -4,7 +4,7 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 ```
 ## linux 后台程序执行
 ```cassandraql
-nohup ./appName &
+nohup ./blogapi &
 ```    
 
 # LinBlogAPI现有接口
@@ -18,9 +18,11 @@ nohup ./appName &
 
 ## TODO
 1. 更新博客//其实不需要
-2. 获得博客分类列表 // 添加新表， 记录拆开 finish
-3. 写追加内容
-4. 根据分类筛选日志
+2. 获得博客分类列表 // 添加新表， 记录拆开 ☑️
+3. 写追加内容/评论功能
+4. 根据分类筛选博客文章 ☑️
+5. 本地输出以天为单位日志 ☑️
+6. 用户功能
 
 
 

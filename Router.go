@@ -14,5 +14,6 @@ func registerRouter(r *gin.Engine) {
 		v1.POST("/page", blog.GetDetailBlog)
 		v1.POST("/deleteblog/", blog.DeleteDetailBlog)
 		v1.GET("/categories/", blog.GetBlogTypesCatagory)
+		v1.POST("/types/", blog.GetBlogsByTypes)
 	}
 }

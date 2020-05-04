@@ -3,9 +3,9 @@ package db
 import (
 	"context"
 	"errors"
-	"github.com/gpmgo/gopm/modules/log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
