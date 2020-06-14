@@ -1,8 +1,8 @@
 package blog
 
 import (
-	"blogapi/dao"
 	"blogapi/model"
+	"blogapi/service"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -28,27 +28,15 @@ func PublishBlog(ctx *gin.Context) {
 		return
 	}
 	log.Info("ctx.Request.body: %v", string(data))
-	//添加博客类型
-	go func() {
-		err := dao.BlogTypedaoOnceInstance().AddBlogType(ctx, blogAdded)
-		if err != nil {
-			log.Error("Add BLog Type failed")
-			ctx.JSON(http.StatusBadRequest, gin.H{
-				"Result": err,
-			})
-			return
-		}
-	}()
-	//添加博客记录
-	res, err := dao.BlogdaoOnceInstance().AddBlog(ctx, blogAdded)
+
+	res, err := service.PublicBlogService(ctx, blogAdded)
+
 	if err != nil {
-		log.Error("Add BLog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"Result": err,
 		})
 		return
 	}
-
 	ctx.JSON(http.StatusOK, gin.H{
 		"Result": "success",
 		"res":    res,

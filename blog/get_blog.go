@@ -1,8 +1,8 @@
 package blog
 
 import (
-	"blogapi/dao"
 	"blogapi/model"
+	"blogapi/service"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -11,7 +11,7 @@ import (
 )
 
 func GetBlogs(ctx *gin.Context) {
-	res, err := dao.BlogdaoOnceInstance().GetBlogs(ctx, 1, 1)
+	res, err := service.GetBlogService(ctx)
 	if err != nil {
 		log.Error("1get BLog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{
@@ -36,7 +36,7 @@ func GetDetailBlog(ctx *gin.Context) {
 		return
 	}
 	err = json.Unmarshal(data, &blogGet)
-	res, err := dao.BlogdaoOnceInstance().GetSpecifyBlog(ctx, blogGet.BlogID)
+	res, err := service.GetDetailBlogService(ctx, blogGet.BlogID)
 	if err != nil {
 		log.Error("Get One Blog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{
@@ -67,7 +67,7 @@ func DeleteDetailBlog(ctx *gin.Context) {
 		})
 		return
 	}
-	err = dao.BlogdaoOnceInstance().DeletBlog(ctx, blogDelete.BlogID)
+	err = service.DeleteDetailBlogService(ctx, blogDelete.BlogID)
 	if err != nil {
 		log.Error("Get One Blog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{
@@ -96,10 +96,7 @@ func GetBlogsByTypes(ctx *gin.Context) {
 		})
 		return
 	}
-	if blogTypeGet.BlogType == "" {
-		blogTypeGet.BlogType = "个人"
-	}
-	res, err := dao.BlogdaoOnceInstance().GetBlogsByType(ctx, 1, 1, blogTypeGet.BlogType)
+	res, err := service.GetBlogsByTypes(ctx, blogTypeGet.BlogType)
 	if err != nil {
 		log.Error("1get BLog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{

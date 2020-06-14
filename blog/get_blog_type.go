@@ -1,14 +1,14 @@
 package blog
 
 import (
-	"blogapi/dao"
+	"blogapi/service"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
 func GetBlogTypesCatagory(ctx *gin.Context) {
-	res, err := dao.BlogTypedaoOnceInstance().GetBlogTypeCategory(ctx)
+	res, err := service.GetBlogTypesCatagoryService(ctx)
 	if err != nil {
 		log.Error("1get BLog failed")
 		ctx.JSON(http.StatusBadRequest, gin.H{
